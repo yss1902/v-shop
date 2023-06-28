@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import vshop.config.data.UserSession;
 import vshop.request.ItemCreate;
 import vshop.request.ItemEdit;
 import vshop.request.ItemSearch;
@@ -18,6 +19,17 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+
+    @GetMapping("/foo")
+    public Long test(UserSession userSession){
+        log.info(">>>{}", userSession.id);
+        return userSession.id;
+    }
+
+    @GetMapping("/bar")
+    public String test2(){
+        return "인증이 필요없는 페이지입니다.";
+    }
 
     @PostMapping("/create")
     public void create(@RequestBody @Valid ItemCreate request){

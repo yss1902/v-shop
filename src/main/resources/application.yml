@@ -1,19 +1,22 @@
 spring:
-  jpa:
-    open-in-view: false
   h2:
     console:
       enabled: true
       path: /h2-console
-  data:
-    web:
-      pageable:
-        one-indexed-parameters: true
-        default-page-size: 5
-
-
   datasource:
-    url: jdbc:h2:mem:v-shop
+    url: jdbc:h2:mem:v-shop;NON_KEYWORDS=USER
     username: sa
     password:
     driver-class-name: org.h2.Driver
+
+  data:
+    web:
+      pageable:
+        max-page-size: 2000
+        default-page-size: 20
+        one-indexed-parameters: true
+  jpa:
+    defer-datasource-initialization: true
+
+memil:
+  jwtKey: "J+P8tfTBdyRIsj8amQHlfDmsWKrLURErxHg4ofL2auc="
